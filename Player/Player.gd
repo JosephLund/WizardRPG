@@ -3,7 +3,7 @@ extends KinematicBody2D
 const MAX_SPEED = 200
 const ACCELERATION = 10000
 const FRICTION = 10000
-const SHOOT_SPEED = 10;
+const SHOOT_SPEED = 1;
 
 enum {
 	MOVE,
@@ -83,9 +83,11 @@ func attack_animation_finished():
 func shoot_fireball():
 	var FireballScene = load("res://World/Fireball.tscn")
 	var fireball = FireballScene.instance()
-	var fireball_rotation = self.get_angle_to(get_global_mouse_position() - global_position )  
+	print(self.global_position)
+	print(get_global_mouse_position())
+	var fireball_rotation = self.get_angle_to(get_global_mouse_position())  
 	
-	print (fireball_rotation);
+#	print (fireball_rotation);
 	var world = get_tree().current_scene
 	fireball.global_position = global_position
 	fireball.rotation = fireball_rotation
