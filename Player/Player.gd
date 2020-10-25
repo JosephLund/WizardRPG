@@ -76,7 +76,15 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_fire"):
 		animationState.travel("Attack")
 		state = ATTACK
-		shoot_fireball()
+		if Input.is_action_pressed("ui_spell_modifier_1"):
+			shoot_fireball()
+		if Input.is_action_pressed("ui_spell_modifier_2"):
+			teleport_player()
+
+
+
+
+
 	velocity = move_and_slide(velocity)
 
 func attack_animation_finished():
@@ -92,3 +100,6 @@ func shoot_fireball():
 	fireball.rotation = fireball_rotation
 	world.add_child(fireball)
 	fireball.apply_impulse(Vector2(), ( get_global_mouse_position() - global_position ) * SHOOT_SPEED)
+
+func teleport_player():
+	self.global_position = get_global_mouse_position()
