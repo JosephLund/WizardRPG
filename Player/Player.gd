@@ -47,40 +47,25 @@ func _process(delta):
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		# not in attack state because we dont want the player to be able to change direction mid animation
 		animationTree.set("parameters/Attack/blend_position", input_vector)
-
-		print(state)
-		match state:
-			MOVE:
-				# sets to run animation
-				animationState.travel("Run")
-			ROLL:
-				pass
-			ATTACK:
-				animationState.travel("Attack")
-		# delta needs to be applied to anything that shouldnt be frame dependent and should work in real time
-		# like player movement
+		if state == MOVE:
+			animationState.travel("Run")
 		
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		match state:
-			MOVE:
-				# sets to run animation
-				animationState.travel("Idle")
-			ROLL:
-				pass
-			ATTACK:
-				animationState.travel("Attack")
+		if state == MOVE:
+			animationState.travel("Idle")
 		# slows the player down to zero speed
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		
 	# prevents colission errors in corners
 	if Input.is_action_just_pressed("ui_fire"):
-		animationState.travel("Attack")
-		state = ATTACK
 		if Input.is_action_pressed("ui_spell_modifier_1"):
 			shoot_fireball()
-		if Input.is_action_pressed("ui_spell_modifier_2"):
+		elif Input.is_action_pressed("ui_spell_modifier_2"):
 			teleport_player()
-
+		else:
+			animationState.travel("Attack")
+			state = ATTACK
 
 
 
