@@ -3,12 +3,10 @@ extends RigidBody2D
 onready var sprite = $Sprite
 onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
-onready var hurtbox = $Hurtbox/CollisionShape2D
-var playerToggle = false;
 
 func _ready():
-	playerToggle = false;
 	self.set_gravity_scale(0)
+	collisionShape.disabled = true;
 	animatedSprite.visible = false;
 	pass # Replace with function body.
 
@@ -33,7 +31,7 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_Hurtbox_area_entered(area):
-	hurtbox.disabled = true;
+	print("entered")
 	play_fireball_effect()
 
 
