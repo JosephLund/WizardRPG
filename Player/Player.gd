@@ -21,18 +21,10 @@ onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 # called when node and children are ready, chilren _readys run first
 func _ready():
-	print("Hello, world!")
 	animationTree.active = true
 
 # called every tick
 func _process(delta):
-#	match state:
-#		MOVE:
-#			move_state(delta)
-#		ROLL:
-#			pass
-#		ATTACK:
-#			attack_state(delta)
 	var input_vector = Vector2.ZERO
 	
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -45,10 +37,10 @@ func _process(delta):
 		# makes sure the player will be in the correct idle position when they stop moving
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
-		# not in attack state because we dont want the player to be able to change direction mid animation
-		animationTree.set("parameters/Attack/blend_position", input_vector)
 		if state == MOVE:
 			animationState.travel("Run")
+			# not in attack state because we dont want the player to be able to change direction mid animation
+			animationTree.set("parameters/Attack/blend_position", input_vector)
 		
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
@@ -64,6 +56,7 @@ func _process(delta):
 		elif Input.is_action_pressed("ui_spell_modifier_2"):
 			teleport_player()
 		else:
+			print("test")
 			animationState.travel("Attack")
 			state = ATTACK
 
