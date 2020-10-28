@@ -14,8 +14,6 @@ func _physics_process(delta):
 func _on_Hurtbox_area_entered(area):
 	if "knockback_vector" in area:
 		knockback = area.knockback_vector * 120
-	else:
-		knockback = area.velocity * 120
 	stats.health -= 1
 
 

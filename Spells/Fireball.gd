@@ -3,6 +3,8 @@ extends RigidBody2D
 onready var sprite = $Sprite
 onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
+onready var hitbox = $FireballHitBox/CollisionShape2D
+var hit = false
 
 
 func _ready():
@@ -20,10 +22,16 @@ func _ready():
 
 
 func play_fireball_effect():
-	animatedSprite.visible = true
-	sprite.visible = false
-	animatedSprite.frame = 0
-	animatedSprite.play("Animate")
+	if hit == false:
+		animatedSprite.visible = true
+		sprite.visible = false
+		animatedSprite.frame = 0
+	
+		hitbox.disabled = true;
+		animatedSprite.play("Animate")
+	else:
+		hit = true;
+	
 
 
 func _on_AnimatedSprite_animation_finished():
