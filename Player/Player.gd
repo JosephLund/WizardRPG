@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const MAX_SPEED = 200
+const ROLL_SPEED = 250
 const ACCELERATION = 10000
 const FRICTION = 10000
 const SHOOT_SPEED = 1;
@@ -14,6 +15,7 @@ enum {
 var state = MOVE
 
 var velocity = Vector2.ZERO
+var roll_vector = Vector2.DOWN
 
 #attaching the animationplayer node in the scene tree to the variable
 onready var animationPlayer = $AnimationPlayer
@@ -41,8 +43,17 @@ func _process(delta):
 			animationState.travel("Run")
 			# not in attack state because we dont want the player to be able to change direction mid animation
 			animationTree.set("parameters/Attack/blend_position", input_vector)
+			animationTree.set("parameters/Roll/blend_position", input_vector)
+			roll_vector = input_vector
 		
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+		if state != ROLL:
+			velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+		else:
+			velocity = velocity.move_toward(roll_vector * MAX_SPEED, ACCELERATION * delta)
+		# only want to be able to roll while moving
+		if Input.is_action_just_pressed("ui_roll"):
+			animationState.travel("Roll")
+			state = ROLL
 	else:
 		if state == MOVE:
 			animationState.travel("Idle")
@@ -67,6 +78,14 @@ func _process(delta):
 func attack_animation_finished():
 	state = MOVE
 	
+	
+func roll_animation_finished():
+	state = MOVE
+	
+	
+func roll_state(delta):
+	pass
+
 func shoot_fireball():
 	var FireballScene = load("res://World/Fireball.tscn")
 	var fireball = FireballScene.instance()
