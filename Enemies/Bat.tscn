@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Bat.png" type="Texture" id=2]
 [ext_resource path="res://Hitboxes and Hurtboxes/Hurtbox.gd" type="Script" id=3]
 [ext_resource path="res://Hitboxes and Hurtboxes/Hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Bat.gd" type="Script" id=5]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -53,7 +54,7 @@ script = ExtResource( 5 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "New Anim"
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -70,6 +71,10 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0.10511, -14.4515 )
 shape = SubResource( 8 )
+
+[node name="Stats" parent="." instance=ExtResource( 6 )]
+max_health = 3.0
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="Hurtbox"]

@@ -1,6 +1,10 @@
 extends KinematicBody2D
 
+onready var stats = $Stats
+
 var knockback = Vector2.ZERO
+
+
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
@@ -8,7 +12,12 @@ func _physics_process(delta):
 
 
 func _on_Hurtbox_area_entered(area):
-	if(area.knockback_vector):
+	if "knockback_vector" in area:
 		knockback = area.knockback_vector * 120
 	else:
-		queue_free()
+		knockback = area.velocity * 120
+	stats.health -= 1
+
+
+func _on_Stats_no_health():
+	queue_free()
