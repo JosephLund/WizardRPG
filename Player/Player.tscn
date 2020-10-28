@@ -1,8 +1,9 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Hitboxes and Hurtboxes/HitBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/SwordHitBox.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.20293
@@ -609,7 +610,7 @@ script = ExtResource( 2 )
 position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 60
-frame = 49
+frame = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -651,6 +652,7 @@ rotation = 1.5708
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 3 )]
 position = Vector2( 15, 4 )
 collision_mask = 8
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 position = Vector2( 0.420448, -4.73004 )

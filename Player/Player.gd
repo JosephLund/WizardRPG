@@ -21,9 +21,13 @@ var roll_vector = Vector2.DOWN
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var swordHitbox = $HitboxPivot/SwordHitbox
+
+
 # called when node and children are ready, chilren _readys run first
 func _ready():
 	animationTree.active = true
+	swordHitbox.knockback_vector = roll_vector
 
 # called every tick
 func _process(delta):
@@ -35,6 +39,7 @@ func _process(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
+		swordHitbox.knockback_vector = input_vector 
 		# Sets the idle blendspace 2d to match the velocity
 		# makes sure the player will be in the correct idle position when they stop moving
 		animationTree.set("parameters/Idle/blend_position", input_vector)
@@ -87,7 +92,7 @@ func roll_state(delta):
 	pass
 
 func shoot_fireball():
-	var FireballScene = load("res://World/Fireball.tscn")
+	var FireballScene = load("res://Spells/Fireball.tscn")
 	var fireball = FireballScene.instance()
 	var fireball_rotation = self.get_angle_to(get_global_mouse_position())  
 	
