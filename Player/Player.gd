@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-#testing pull request
 
 export var MAX_SPEED = 200
 export var ROLL_SPEED = 250
