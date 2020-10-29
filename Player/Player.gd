@@ -88,11 +88,11 @@ func roll_animation_finished():
 	state = MOVE
 	
 	
-func roll_state(delta):
+func roll_state(_delta):
 	pass
 
 func shoot_fireball():
-	var FireballScene = load("res://Spells/Fireball.tscn")
+	var FireballScene = load("res://Spells/Fireball/Fireball.tscn")
 	var fireball = FireballScene.instance()
 	var fireball_rotation = self.get_angle_to(get_global_mouse_position())  
 	

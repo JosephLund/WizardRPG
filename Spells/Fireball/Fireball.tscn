@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Spells/Fireball/Fireball.png" type="Texture" id=1]
+[ext_resource path="res://Spells/Fireball/Fireball.gd" type="Script" id=3]
+[ext_resource path="res://Hitboxes and Hurtboxes/HitBox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 12.5198
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 12.6437
+
+[node name="Fireball" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.841846, -11.9262 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -4, -26 )
+
+[node name="FireballHitBox" parent="." instance=ExtResource( 4 )]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="FireballHitBox" index="0"]
+position = Vector2( 12.768, 0.140307 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 12.6277, 0.280616 )
+shape = SubResource( 5 )
+[connection signal="area_entered" from="FireballHitBox" to="." method="_on_FireballHitBox_area_entered"]
+
+[editable path="FireballHitBox"]

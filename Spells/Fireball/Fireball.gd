@@ -1,7 +1,6 @@
 extends RigidBody2D
 
 onready var sprite = $Sprite
-onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var hitbox = $FireballHitBox/CollisionShape2D
 var hit = false
@@ -10,7 +9,6 @@ var hit = false
 func _ready():
 	self.set_gravity_scale(0)
 	collisionShape.disabled = true;
-	animatedSprite.visible = false;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,21 +20,19 @@ func _ready():
 
 
 func play_fireball_effect():
-	if hit == false:
-		animatedSprite.visible = true
-		sprite.visible = false
-		animatedSprite.frame = 0
+	sprite.visible = false
+	var FireballEffectScene = load("res://Spells/Fireball/FireballEffect.tscn")
+	var fireballEffect = FireballEffectScene.instance()
 	
-		hitbox.disabled = true;
-		animatedSprite.play("Animate")
-	else:
-		hit = true;
-	
+	var world = get_tree().current_scene
+	fireballEffect.global_position = global_position
+	world.add_child(fireballEffect)
+	queue_free()
 
 
 func _on_AnimatedSprite_animation_finished():
 	queue_free()
 
 
-func _on_FireballHitBox_area_entered(area):
+func _on_FireballHitBox_area_entered(_area):
 	play_fireball_effect()
