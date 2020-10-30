@@ -22,7 +22,7 @@ func breakRock():
 	animatedSprite.visible = true
 	sprite.visible = false
 	animatedSprite.frame = 0
-	animatedSprite.play("Animate")
+	animatedSprite.play("Animation")
 
 
 func _on_AnimatedSprite_animation_finished():

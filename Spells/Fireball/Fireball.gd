@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Area2D
 
 onready var sprite = $Sprite
 onready var collisionShape = $CollisionShape2D
@@ -7,7 +7,6 @@ var hit = false
 
 
 func _ready():
-	self.set_gravity_scale(0)
 	collisionShape.disabled = true;
 
 
