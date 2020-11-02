@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://UI/MainMenu/mainmenu.PNG" type="Texture" id=1]
 [ext_resource path="res://World/Torch/torch.png" type="Texture" id=2]
+[ext_resource path="res://UI/MainMenu/Waterfall-SpriteSheet.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -43,6 +44,26 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 36 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 36 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 36 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,14 +75,19 @@ __meta__ = {
 texture = ExtResource( 1 )
 offset = Vector2( 160, 90 )
 
-[node name="Torch" type="AnimatedSprite" parent="."]
+[node name="LeftTorch" type="AnimatedSprite" parent="."]
 position = Vector2( 64.8154, 122.05 )
 frames = SubResource( 9 )
-frame = 6
+frame = 5
 playing = true
 
-[node name="Torch2" type="AnimatedSprite" parent="."]
+[node name="RightTorch" type="AnimatedSprite" parent="."]
 position = Vector2( 236.289, 122.05 )
 frames = SubResource( 9 )
-frame = 5
+frame = 4
+playing = true
+
+[node name="Waterfall" type="AnimatedSprite" parent="."]
+position = Vector2( 288, 129 )
+frames = SubResource( 13 )
 playing = true
