@@ -76,7 +76,7 @@ func _process(delta):
 			animationState.travel("Attack")
 			state = ATTACK
 
-
+#Jimbo was here
 
 
 	velocity = move_and_slide(velocity)
@@ -101,9 +101,7 @@ func shoot_fireball():
 	fireball.global_position = global_position
 	fireball.rotation = fireball_rotation
 	world.add_child(fireball)
-	
-	
-	fireball.apply_impulse(Vector2(), ( get_global_mouse_position() - global_position ) * SHOOT_SPEED)
+#	fireball.apply_impulse(Vector2(), ( get_global_mouse_position() - global_position ) * SHOOT_SPEED)
 	
 
 func teleport_player():

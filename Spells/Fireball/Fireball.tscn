@@ -4,14 +4,15 @@
 [ext_resource path="res://Spells/Fireball/Fireball.gd" type="Script" id=3]
 [ext_resource path="res://Hitboxes and Hurtboxes/HitBox.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=1]
 radius = 12.5198
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=2]
 radius = 12.6437
 
-[node name="Fireball" type="RigidBody2D"]
-collision_layer = 0
+[node name="Fireball" type="Area2D"]
+collision_layer = 8
+collision_mask = 17
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -26,11 +27,11 @@ collision_mask = 8
 
 [node name="CollisionShape2D" parent="FireballHitBox" index="0"]
 position = Vector2( 12.768, 0.140307 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 12.6277, 0.280616 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 [connection signal="area_entered" from="FireballHitBox" to="." method="_on_FireballHitBox_area_entered"]
 
 [editable path="FireballHitBox"]
