@@ -1,11 +1,12 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://UI/MainMenu/mainmenu.PNG" type="Texture" id=1]
+[ext_resource path="res://UI/MainMenu/mainmenu.png" type="Texture" id=1]
 [ext_resource path="res://World/Torch/torch.png" type="Texture" id=2]
 [ext_resource path="res://UI/MainMenu/Waterfall-SpriteSheet.png" type="Texture" id=3]
 [ext_resource path="res://World/Torch/torchlight.png" type="Texture" id=4]
 [ext_resource path="res://UI/MainMenu/Rocks.png" type="Texture" id=5]
 [ext_resource path="res://UI/MainMenu/HangingBat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/MainMenu/sunlight.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -74,6 +75,9 @@ polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0 )
 [sub_resource type="OccluderPolygon2D" id=15]
 polygon = PoolVector2Array( 253.547, 128.97, 247.24, 131.518, 241.677, 142.775, 247.504, 142.312, 255.649, 136.948, 253.614, 130.204 )
 
+[sub_resource type="OccluderPolygon2D" id=16]
+polygon = PoolVector2Array( 66.4069, 18.146, 81.8629, 18.618, 82.6887, 19.2079, 85.4024, 19.6798, 85.5204, 18.264, 86.3463, 18.382, 86.3463, 17.2022, 89.6498, 17.5561, 89.6498, 16.4943, 91.4196, 16.4943, 91.4196, 15.1964, 93.6613, 15.4324, 93.6613, 16.3763, 96.6109, 16.3763, 97.5548, 17.5561, 99.3245, 17.5561, 99.3245, 16.2583, 106.64, 16.3763, 106.522, 17.6741, 109.471, 17.6741, 109.471, 16.2583, 114.191, 16.3763, 114.191, 17.6741, 115.134, 17.6741, 115.252, 16.3763, 118.556, 16.6122, 118.32, 13.3087, 119.5, 13.3087, 120.68, 13.4267, 120.562, 14.3705, 124.809, 14.6065, 124.573, 13.4267, 132.596, 13.6626, 132.596, 14.1346, 134.13, 14.2526, 134.366, 15.1964, 140.619, 15.3144, 140.619, 16.3763, 147.344, 16.4943, 147.462, 15.1964, 150.412, 15.4324, 150.648, 14.1346, 151.238, 14.1346, 151.356, 12.9547, 153.597, 13.4267, 153.833, 12.3648, 154.305, 12.2468, 154.895, 10.949, 156.665, 11.6569, 157.491, 12.6008, 166.458, 12.8368, 169.171, 13.6626, 172.759, 13.5371, 172.654, 12.4848, 173.671, 12.555, 174.618, 12.7304, 174.548, 13.4319, 175.951, 13.5722, 176.583, 14.4491, 177.705, 15.4313, 184.662, 15.4719, 184.495, 16.473, 191.586, 16.3062, 191.586, 17.3907, 195.674, 17.2239, 195.674, 18.3084, 196.676, 18.3084, 196.759, 19.1427, 200.68, 19.1427, 200.847, 20.7278, 206.353, 20.4775, 207.688, 22.2295, 209.44, 22.3964, 210.274, 21.2284, 219.284, 21.3952, 228.044, 22.0626, 230.631, 24.5655, 231.632, 25.3163, 234.301, 24.482, 235.886, 23.3141, 236.685, 23.4789, 236.685, 24.2735, 244.3, 24.2735, 244.433, 23.3465, 252.511, 23.214, 253.637, 24.5384, 256.617, 24.2735, 258.206, 0.634238, 60.649, 0.559357 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -82,13 +86,13 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
+position = Vector2( 0, -0.222725 )
 texture = ExtResource( 1 )
 offset = Vector2( 160, 90 )
 
 [node name="Waterfall" type="AnimatedSprite" parent="."]
 position = Vector2( 288, 129 )
 frames = SubResource( 4 )
-frame = 2
 playing = true
 
 [node name="LeftTorch" type="KinematicBody2D" parent="."]
@@ -139,3 +143,13 @@ position = Vector2( 13.6206, 14.1906 )
 
 [node name="HangingBat2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 215.523, 8.83594 )
+
+[node name="Sunlight" type="Light2D" parent="."]
+position = Vector2( 161.514, 16.6199 )
+texture = ExtResource( 7 )
+texture_scale = 0.38
+shadow_enabled = true
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+position = Vector2( -0.00231934, 0.252117 )
+occluder = SubResource( 16 )
