@@ -613,7 +613,6 @@ hframes = 60
 frame = 39
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1.14031, -0.247379 )
 rotation = 1.5708
 shape = SubResource( 1 )
