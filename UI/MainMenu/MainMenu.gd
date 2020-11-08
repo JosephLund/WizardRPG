@@ -23,6 +23,7 @@ func _ready():
 	state = LOGIN
 
 func _process(_delta):
+   #	makes it so you can login or register using enter
 	if Input.is_action_just_pressed("ui_accept"):
 		if !disabled:
 			if inputFocus == PASSWORD:

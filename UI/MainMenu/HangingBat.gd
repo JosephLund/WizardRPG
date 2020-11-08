@@ -15,7 +15,6 @@ func play_blink():
 	randomize()
 	animationPlayer.play("Blink")
 	var offset : float = rand_range(0, animationPlayer.current_animation_length - 2)
-	print(offset)
 	animationPlayer.advance(offset)
 
 
