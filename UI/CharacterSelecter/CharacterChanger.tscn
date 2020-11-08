@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/newPlayer/playerSkinPortrait.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 OLDCOLOR1 : hint_color;
+uniform vec4 OLDCOLOR2 : hint_color;
+uniform vec4 OLDCOLOR3 : hint_color;
+
+uniform vec4 NEWCOLOR1 : hint_color;
+uniform vec4 NEWCOLOR2 : hint_color;
+uniform vec4 NEWCOLOR3 : hint_color;
+
+// runs for each pixel
+void fragment(){
+	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
+	if(curr_color == OLDCOLOR1){
+		COLOR = NEWCOLOR1;
+	}
+	else if (curr_color == OLDCOLOR2){
+		COLOR = NEWCOLOR2;
+	}
+	else if (curr_color == OLDCOLOR3){
+		COLOR = NEWCOLOR3;
+	}
+	else{
+		COLOR = curr_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/OLDCOLOR1 = Color( 0, 0, 0, 1 )
+shader_param/OLDCOLOR2 = null
+shader_param/OLDCOLOR3 = null
+shader_param/NEWCOLOR1 = null
+shader_param/NEWCOLOR2 = null
+shader_param/NEWCOLOR3 = null
+
+[node name="CharacterChanger" type="Node2D"]
+
+[node name="BaseBody" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 241.16, 90.6119 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )

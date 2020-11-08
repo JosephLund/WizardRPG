@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Waterfall-SpriteSheet.PNG-cc9ae5a7e77c592ef6c60d81b78cce43.stex"
+path="res://.import/finalCharacterSprite-SpriteSheet.png-8d0ffda51e6bc9aa074527e1b2b01e64.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/MainMenu/Waterfall-SpriteSheet.PNG"
-dest_files=[ "res://.import/Waterfall-SpriteSheet.PNG-cc9ae5a7e77c592ef6c60d81b78cce43.stex" ]
+source_file="res://Player/newPlayer/finalCharacterSprite-SpriteSheet.png"
+dest_files=[ "res://.import/finalCharacterSprite-SpriteSheet.png-8d0ffda51e6bc9aa074527e1b2b01e64.stex" ]
 
 [params]
 
