@@ -19,6 +19,11 @@ config/name="Action RPG"
 run/main_scene="res://UI/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+User="*res://User.gd"
+Firebase="*res://Firebase.gd"
+
 [display]
 
 window/size/width=320

@@ -11,13 +11,17 @@ onready var notification = $Notification
 
 onready var http : HTTPRequest = $HTTPRequest
 
-enum {LOGIN, REGISTER, PASSWORD, CONFIRMPASSWORD}
+enum {LOGIN, REGISTER, PASSWORD, CONFIRMPASSWORD, GETINFO}
 
 var state = LOGIN
 var inputFocus = null
 var disabled = false
 
-var Firebase = load("res://Firebase.gd").new()
+
+var user :={
+	"username":{},
+	"skinColor":{}
+}
 
 func _ready():
 	state = LOGIN
@@ -60,6 +64,7 @@ func _on_BackButton_pressed():
 func _on_HTTPRequest_request_completed(_result: int, response_code: int, _headers: PoolStringArray, body: PoolByteArray) -> void:
 	enableButtons()
 	var response_body := JSON.parse(body.get_string_from_ascii())
+	var result_body := JSON.parse(body.get_string_from_ascii()).result as Dictionary
 	if response_code != 200:
 		notification.text = response_body.result.error.message.capitalize()
 	else:
@@ -67,8 +72,26 @@ func _on_HTTPRequest_request_completed(_result: int, response_code: int, _header
 			notification.text = "Registration Successful!"
 			yield(get_tree().create_timer(2.0), "timeout")
 			_on_BackButton_pressed()
-		else:
+		elif state == LOGIN:
 			notification.text = "Login Successful!"
+			state = GETINFO
+			print("in Menu: ", User.id)
+#			Firebase.get_document("users/%s" % Firebase.user_info.id, http)
+		else:
+			# get user info success
+			notification.text = "Loading Information..."
+			match response_code:
+				404:
+					#user is new
+					User.newUser = true
+					yield(get_tree().create_timer(2.0), "timeout")
+					var _newScene = get_tree().change_scene("res://UI/CharacterSelecter/CharacterChanger.tscn")
+				200:
+					User.newUser = false
+					self.user = result_body.fields
+					User.skinColor = self.user.skinColor.stringValue
+					User.username = self.user.username.stringValue
+					#TODO: send player into world
 
 
 func _on_ConfirmRegisterButton_pressed():

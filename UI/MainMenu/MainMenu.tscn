@@ -95,7 +95,6 @@ offset = Vector2( 160, 90 )
 [node name="Waterfall" type="AnimatedSprite" parent="."]
 position = Vector2( 288.707, 129 )
 frames = SubResource( 4 )
-frame = 2
 playing = true
 
 [node name="LeftTorch" type="KinematicBody2D" parent="."]

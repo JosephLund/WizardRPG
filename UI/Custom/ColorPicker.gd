@@ -25,6 +25,8 @@ var blueTextValue : String = "100"
 
 
 func _ready():
+	currentHex = User.skinColor
+	currentPickerColor = Color(currentHex)
 	pickerColorDisplay.color = currentPickerColor
 
 func _on_Color_changed(value, color):
@@ -46,7 +48,6 @@ func _on_Color_changed(value, color):
 
 func updateColor():
 	# sets values
-	var test = int(currentPickerColor.r * 100)
 	redTextValue = str(int(currentPickerColor.r * 100))
 	greenTextValue = str(int(currentPickerColor.g * 100))
 	blueTextValue = str(int(currentPickerColor.b * 100))
@@ -80,22 +81,18 @@ func _on_HexValue_text_entered(new_text):
 
 
 func _on_ColorText_entered(new_text, color):
-	print("test0")
 	var regex = RegEx.new()
 	#This is to check to see if the new_text is a number 000-999
 	regex.compile("[0-9]{1,3}")
 	var result = regex.search(new_text)
-	print("test1")
 	if result:
 		if int(new_text) > -1 and int(new_text) < 101:
-			print("test2")
 			match color:
 				0:
 					currentPickerColor.r = int(new_text) * .01
 				1:
 					currentPickerColor.g = int(new_text) * .01
 				2:
-					print("test3")
 					currentPickerColor.b = int(new_text) * .01
 			updateColor()
 	else:
