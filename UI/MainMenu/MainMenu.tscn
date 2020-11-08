@@ -95,7 +95,7 @@ offset = Vector2( 160, 90 )
 [node name="Waterfall" type="AnimatedSprite" parent="."]
 position = Vector2( 288.707, 129 )
 frames = SubResource( 4 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="LeftTorch" type="KinematicBody2D" parent="."]
@@ -103,7 +103,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="LeftTorch"]
 position = Vector2( 90.9156, 122.914 )
 frames = SubResource( 13 )
-frame = 7
+frame = 4
 playing = true
 
 [node name="Light2D" type="Light2D" parent="LeftTorch"]
@@ -117,7 +117,7 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="RightTorch2"]
 position = Vector2( 237.791, 123.701 )
 frames = SubResource( 13 )
-frame = 7
+frame = 4
 playing = true
 
 [node name="Light2D" type="Light2D" parent="RightTorch2"]
@@ -255,6 +255,10 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="focus_entered" from="Password" to="." method="_on_Password_focus_entered"]
+[connection signal="focus_exited" from="Password" to="." method="_on_Password_focus_exited"]
+[connection signal="focus_entered" from="ConfirmPassword" to="." method="_on_ConfirmPassword_focus_entered"]
+[connection signal="focus_exited" from="ConfirmPassword" to="." method="_on_ConfirmPassword_focus_exited"]
 [connection signal="pressed" from="LoginButton" to="." method="_on_LoginButton_pressed"]
 [connection signal="pressed" from="RegisterButton" to="." method="_on_RegisterButton_pressed"]
 [connection signal="pressed" from="ConfirmRegisterButton" to="." method="_on_ConfirmRegisterButton_pressed"]
