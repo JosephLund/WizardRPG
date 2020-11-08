@@ -95,6 +95,7 @@ offset = Vector2( 160, 90 )
 [node name="Waterfall" type="AnimatedSprite" parent="."]
 position = Vector2( 288.707, 129 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="LeftTorch" type="KinematicBody2D" parent="."]
@@ -102,6 +103,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="LeftTorch"]
 position = Vector2( 90.9156, 122.914 )
 frames = SubResource( 13 )
+frame = 7
 playing = true
 
 [node name="Light2D" type="Light2D" parent="LeftTorch"]
@@ -115,6 +117,7 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="RightTorch2"]
 position = Vector2( 237.791, 123.701 )
 frames = SubResource( 13 )
+frame = 7
 playing = true
 
 [node name="Light2D" type="Light2D" parent="RightTorch2"]
@@ -200,6 +203,9 @@ margin_right = 217.0
 margin_bottom = 154.0
 rect_scale = Vector2( 0.5, 0.5 )
 text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RegisterButton" type="Button" parent="."]
 margin_left = 166.55
@@ -235,5 +241,22 @@ text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Notification" type="Label" parent="."]
+margin_left = 107.675
+margin_top = 164.796
+margin_right = 337.675
+margin_bottom = 178.796
+rect_scale = Vector2( 0.5, 0.5 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="LoginButton" to="." method="_on_LoginButton_pressed"]
 [connection signal="pressed" from="RegisterButton" to="." method="_on_RegisterButton_pressed"]
+[connection signal="pressed" from="ConfirmRegisterButton" to="." method="_on_ConfirmRegisterButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
