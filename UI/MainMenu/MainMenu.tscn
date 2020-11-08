@@ -95,7 +95,6 @@ offset = Vector2( 160, 90 )
 [node name="Waterfall" type="AnimatedSprite" parent="."]
 position = Vector2( 288.707, 129 )
 frames = SubResource( 4 )
-frame = 2
 playing = true
 
 [node name="LeftTorch" type="KinematicBody2D" parent="."]
@@ -103,7 +102,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="LeftTorch"]
 position = Vector2( 90.9156, 122.914 )
 frames = SubResource( 13 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="Light2D" type="Light2D" parent="LeftTorch"]
@@ -117,7 +116,7 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="RightTorch2"]
 position = Vector2( 237.791, 123.701 )
 frames = SubResource( 13 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="Light2D" type="Light2D" parent="RightTorch2"]

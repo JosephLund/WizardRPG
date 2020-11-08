@@ -14,12 +14,10 @@ var user :={
 	"username":{},
 	"skinColor":{}
 } setget setUser
-#	User.username = username.text
-#	User.skinColor = colorPicker.currentHex
-#	User.newUser = false
+
 func _ready():
 	self.user.username = {"stringValue": User.username}
-	self.user.skinColor = User.skinColor
+	self.user.skinColor = {"stringValue": User.skinColor}
 	self.newUser = User.newUser
 
 
@@ -45,8 +43,11 @@ func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 	match response_code:
 		200:
 			notification.text = "Character saved!"
-			self.user = result_body.fields
+			User.username = username.text
+			User.skinColor = colorPicker.currentHex
+			User.newUser = false
 
 func setUser(value: Dictionary) -> void:
 	user = value
 	username.text = user.username.stringValue
+	baseBody.self_modulate = Color(User.skinColor)

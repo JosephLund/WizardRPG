@@ -69,7 +69,7 @@ func _on_HTTPRequest_request_completed(_result: int, response_code: int, _header
 		if state == GETINFO:
 			#user is new
 			User.newUser = true
-			yield(get_tree().create_timer(2.0), "timeout")
+			yield(get_tree().create_timer(0.5), "timeout")
 			get_tree().change_scene("res://UI/CharacterSelecter/CharacterChanger.tscn")
 		else:
 			print(response_body.result.error.message.capitalize())

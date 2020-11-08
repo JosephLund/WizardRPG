@@ -25,9 +25,11 @@ var blueTextValue : String = "100"
 
 
 func _ready():
+	swapColors = false;
 	currentHex = User.skinColor
 	currentPickerColor = Color(currentHex)
 	pickerColorDisplay.color = currentPickerColor
+	applyColor()
 
 func _on_Color_changed(value, color):
 	if updateCurrentColor:
@@ -65,6 +67,22 @@ func updateColor():
 	if swapColors:
 		emit_signal("color_selected")
 
+func applyColor():
+	# sets values
+	redTextValue = str(int(currentPickerColor.r * 100))
+	greenTextValue = str(int(currentPickerColor.g * 100))
+	blueTextValue = str(int(currentPickerColor.b * 100))
+	
+	currentHex = currentPickerColor.to_html(false)
+	redValue.text = redTextValue
+	greenValue.text = greenTextValue
+	blueValue.text = blueTextValue
+	hexValue.text = currentHex
+	redSlider.value =currentPickerColor.r * 100
+	greenSlider.value =currentPickerColor.g * 100
+	blueSlider.value =currentPickerColor.b * 100
+	
+	swapColors = true;
 
 func _on_HexValue_text_entered(new_text):
 	var regex = RegEx.new()
