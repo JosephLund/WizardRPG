@@ -18,7 +18,7 @@ var user :={
 #	User.skinColor = colorPicker.currentHex
 #	User.newUser = false
 func _ready():
-	self.user.username = User.username
+	self.user.username = {"stringValue": User.username}
 	self.user.skinColor = User.skinColor
 	self.newUser = User.newUser
 
@@ -35,9 +35,9 @@ func _on_SaveButton_pressed():
 	user.skinColor = {"stringValue": colorPicker.currentHex}
 	match newUser:
 		true:
-			Firebase.save_document("users?documentId=%s" % Firebase.user_info.id, user, http)
+			Firebase.save_document("users?documentId=%s" % User.id, user, http)
 		false:
-			Firebase.update_document("users/%s" % Firebase.user_info.id, user, http)
+			Firebase.update_document("users/%s" % User.id, user, http)
 
 
 func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):

@@ -66,7 +66,14 @@ func _on_HTTPRequest_request_completed(_result: int, response_code: int, _header
 	var response_body := JSON.parse(body.get_string_from_ascii())
 	var result_body := JSON.parse(body.get_string_from_ascii()).result as Dictionary
 	if response_code != 200:
-		notification.text = response_body.result.error.message.capitalize()
+		if state == GETINFO:
+			#user is new
+			User.newUser = true
+			yield(get_tree().create_timer(2.0), "timeout")
+			get_tree().change_scene("res://UI/CharacterSelecter/CharacterChanger.tscn")
+		else:
+			print(response_body.result.error.message.capitalize())
+			notification.text = response_body.result.error.message.capitalize()
 	else:
 		if state == REGISTER:
 			notification.text = "Registration Successful!"
@@ -75,22 +82,19 @@ func _on_HTTPRequest_request_completed(_result: int, response_code: int, _header
 		elif state == LOGIN:
 			notification.text = "Login Successful!"
 			state = GETINFO
-			print("in Menu: ", User.id)
-#			Firebase.get_document("users/%s" % Firebase.user_info.id, http)
+			yield(get_tree().create_timer(0.5), "timeout")
+			Firebase.get_document("users/%s" % Firebase.user_info.id, http)
 		else:
 			# get user info success
 			notification.text = "Loading Information..."
 			match response_code:
-				404:
-					#user is new
-					User.newUser = true
-					yield(get_tree().create_timer(2.0), "timeout")
-					var _newScene = get_tree().change_scene("res://UI/CharacterSelecter/CharacterChanger.tscn")
 				200:
 					User.newUser = false
 					self.user = result_body.fields
 					User.skinColor = self.user.skinColor.stringValue
 					User.username = self.user.username.stringValue
+					yield(get_tree().create_timer(2.0), "timeout")
+					get_tree().change_scene("res://UI/CharacterSelecter/CharacterChanger.tscn")
 					#TODO: send player into world
 
 
