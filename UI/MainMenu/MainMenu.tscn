@@ -102,7 +102,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="LeftTorch"]
 position = Vector2( 90.9156, 122.914 )
 frames = SubResource( 13 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="LeftTorch"]
@@ -116,7 +116,7 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="RightTorch2"]
 position = Vector2( 237.791, 123.701 )
 frames = SubResource( 13 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="RightTorch2"]
