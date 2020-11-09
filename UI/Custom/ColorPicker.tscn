@@ -1,0 +1,131 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/Custom/ColorPicker.gd" type="Script" id=1]
+
+[node name="Color Picker" type="Panel"]
+margin_top = 0.210228
+margin_right = 73.0
+margin_bottom = 73.2102
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Display" type="ColorRect" parent="."]
+margin_top = 56.0
+margin_right = 73.0
+margin_bottom = 73.0
+
+[node name="Red" type="HSlider" parent="."]
+margin_left = 10.0
+margin_top = 6.0
+margin_right = 113.0
+margin_bottom = 22.0
+rect_scale = Vector2( 0.35, 0.35 )
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Green" type="HSlider" parent="."]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 113.0
+margin_bottom = 36.0
+rect_scale = Vector2( 0.35, 0.35 )
+value = 100.0
+
+[node name="Blue" type="HSlider" parent="."]
+margin_left = 10.0
+margin_top = 34.0
+margin_right = 115.0
+margin_bottom = 50.0
+rect_scale = Vector2( 0.35, 0.35 )
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedValue" type="LineEdit" parent="."]
+margin_left = 55.0
+margin_top = 6.0
+margin_right = 113.0
+margin_bottom = 30.0
+rect_scale = Vector2( 0.2, 0.2 )
+text = "100"
+max_length = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GreenValue" type="LineEdit" parent="."]
+margin_left = 55.0
+margin_top = 20.0
+margin_right = 113.0
+margin_bottom = 44.0
+rect_scale = Vector2( 0.2, 0.2 )
+text = "100"
+max_length = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlueValue" type="LineEdit" parent="."]
+margin_left = 55.0
+margin_top = 34.0
+margin_right = 113.0
+margin_bottom = 58.0
+rect_scale = Vector2( 0.2, 0.2 )
+text = "100"
+max_length = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HexValue" type="LineEdit" parent="."]
+margin_left = 46.4204
+margin_top = 47.2102
+margin_right = 133.42
+margin_bottom = 71.2102
+rect_scale = Vector2( 0.2, 0.2 )
+text = "ffffff"
+max_length = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 42.4199
+margin_top = 47.9374
+margin_right = 52.4199
+margin_bottom = 61.9374
+rect_scale = Vector2( 0.25, 0.25 )
+text = "#"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 2.0
+margin_top = 6.0
+margin_right = 8.0
+margin_bottom = 11.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 2.0
+margin_top = 20.0
+margin_right = 8.0
+margin_bottom = 25.0
+color = Color( 0, 1, 0, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+margin_left = 2.0
+margin_top = 34.0
+margin_right = 8.0
+margin_bottom = 39.0
+color = Color( 0, 0, 1, 1 )
+[connection signal="value_changed" from="Red" to="." method="_on_Color_changed" binds= [ 0 ]]
+[connection signal="value_changed" from="Green" to="." method="_on_Color_changed" binds= [ 1 ]]
+[connection signal="value_changed" from="Blue" to="." method="_on_Color_changed" binds= [ 2 ]]
+[connection signal="text_entered" from="RedValue" to="." method="_on_ColorText_entered" binds= [ 0 ]]
+[connection signal="text_entered" from="GreenValue" to="." method="_on_ColorText_entered" binds= [ 1 ]]
+[connection signal="text_entered" from="BlueValue" to="." method="_on_ColorText_entered" binds= [ 2 ]]
+[connection signal="text_entered" from="HexValue" to="." method="_on_HexValue_text_entered"]
